@@ -2,23 +2,19 @@
 <html lang='<%= I18n.locale %>'>
   <head>
     <meta charset='UTF-8'>
-    <meta http-equiv='x-ua-compatible' content='ie=edge'>
-    <meta name='description' content='<%= meta_tag_description %>'>
-    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta content='ie=edge' http-equiv='x-ua-compatible'>
+    <meta content='<%= meta_tag_description %>' name='description'>
+    <meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
     <!--Title-->
     <title><%= meta_tag_title %></title>
-    <!--Meta-->
-    <% if content_for?(:preferred_path) %>
-      <link rel='canonical' href='<%= preferred_url %>'>
-    <% end %>
     <!--Styles-->
-    <%= stylesheet_link_tag :site, media: 'all' %>
+    <%= stylesheet_link_tag 'bundle/site' %>
     <%= yield_content :head %>
   </head>
 
   <body>
     <%= yield %>
     <!--Scripts-->
-    <%= javascript_include_tag :site %>
+    <%= javascript_include_tag 'bundle/all.min' %>
   </body>
 </html>
