@@ -6,9 +6,14 @@ gem 'builder'
 
 # Core
 gem 'middleman'
-gem 'middleman-autoprefixer'
-gem 'middleman-minify-html'
 gem 'middleman-sprockets'
+gem 'middleman-aria_current'
+gem 'middleman-autoprefixer'
+gem 'middleman-livereload'
+gem 'middleman-webpacker'
+gem 'middleman-minify-html'
+gem 'middleman-inline_svg'
+gem 'middleman-build-reporter'
 
 # Templating Engines
 gem 'nokogiri'
