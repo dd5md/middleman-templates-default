@@ -1,16 +1,24 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang='<%= I18n.locale %>'>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Use the title from a page's frontmatter if it has one -->
-    <title><%= current_page.data.title || "Middleman" %></title>
-    <%= stylesheet_link_tag "site" %>
-    <%= javascript_include_tag "site" %>
+    <meta charset='UTF-8'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+    <meta name='description' content='<%= meta_tag_description %>'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <!--Title-->
+    <title><%= meta_tag_title %></title>
+    <!--Meta-->
+    <% if content_for?(:preferred_path) %>
+      <link rel='canonical' href='<%= preferred_url %>'>
+    <% end %>
+    <!--Styles-->
+    <%= stylesheet_link_tag :site, media: 'all' %>
+    <%= yield_content :head %>
   </head>
+
   <body>
     <%= yield %>
+    <!--Scripts-->
+    <%= javascript_include_tag :site %>
   </body>
 </html>
