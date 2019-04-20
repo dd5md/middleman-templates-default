@@ -7,14 +7,17 @@
     <meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'>
     <!--Title-->
     <title><%= meta_tag_title %></title>
+    <!--Favicons-->
+    <%= favicon_tag 'favicons/favicon.ico' %>
+    <%= favicon_tag 'favicons/apple-touch-icon.png' %>
     <!--Styles-->
-    <%= stylesheet_link_tag 'bundle/site' %>
+    <%= stylesheet_link_tag :site %>
     <%= yield_content :head %>
   </head>
 
-  <body>
+  <body class='<%= page_classes %>'>
     <%= yield %>
     <!--Scripts-->
-    <%= javascript_include_tag 'bundle/all.min' %>
+    <%= javascript_include_tag :site %>
   </body>
 </html>
