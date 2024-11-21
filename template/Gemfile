@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'middleman', git: 'https://github.com/ntkme/middleman', branch: sass-embedded'
-gem "middleman-sprockets", '~> 4.0.0'
+gem 'middleman', git: 'https://github.com/ntkme/middleman', branch: 'sass-embedded'
+gem 'middleman-sprockets', '~> 4.0.0'
 gem 'middleman-livereload'
 gem 'middleman-autoprefixer'
 gem 'middleman-inline_svg'
@@ -9,9 +9,11 @@ gem 'middleman-minify-html'
 
 # Asset Pipeline Gems
 gem 'sprockets', '~> 3.7.2'
+# gem 'sass',    '~> 3.7.4'
+
+# Asset Pipeline Gems
 gem 'builder'
 gem 'bourbon'
-# gem 'sass', '~> 3.7.4'
 
 # Build Pipeline Gems
 gem 'htmlcompressor'
