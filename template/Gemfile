@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'middleman',              '~> 4.5'
+gem 'middleman'
 gem 'middleman-sprockets',    '~> 4.0.0'
 gem 'middleman-livereload'
 gem 'middleman-minify-html'
-gem 'middleman-autoprefixer', git: 'https://github.com/middleman/middleman-autoprefixer.git', branch: 'master'
+gem 'middleman-autoprefixer'
 gem 'middleman-robots'
 gem 'middleman-inline_svg'
 
