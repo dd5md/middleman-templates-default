@@ -4,8 +4,9 @@ ruby '3.3.5'
 
 # Middleman Gems
 gem 'middleman'
-gem 'middleman-autoprefixer'
 gem 'middleman-livereload'
+gem 'middleman-aria_current'
+gem 'middleman-autoprefixer'
 gem 'middleman-inline_svg'
 gem 'middleman-minify-html'
 gem 'middleman-robots'
