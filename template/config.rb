@@ -29,7 +29,10 @@ end
 # I18N
 activate :i18n, mount_at_root: :de
 
-# INLINE SVG
+# Aria Current
+activate :aria_current
+
+# Inline SVG
 activate :inline_svg
 
 # Image Size Helper
@@ -41,7 +44,7 @@ page '/*.json', layout: false
 page '/*.txt', layout: false
 
 ###-----------------------------------
-#  Helpers
+#  Helpers-specific Configuration
 ###-----------------------------------
 
 # helpers do
@@ -51,7 +54,7 @@ page '/*.txt', layout: false
 # end
 
 ###-----------------------------------
-#  Layout-Specific CONFIGURATION
+#  Layout-specific Configuration
 ###-----------------------------------
 
 # Relative Links
@@ -78,7 +81,7 @@ end
 page '404.html', layout: false, directory_index: false
 
 ###-----------------------------------
-#  Server-SPECIFIC CONFIGURATION
+#  Server-specific Configuration
 ###-----------------------------------
 
 configure :server do
