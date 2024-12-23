@@ -1,25 +1,26 @@
 source 'https://rubygems.org'
 
+ruby '3.3.5'
+
+# Middleman Gems
 gem 'middleman'
-gem 'middleman-sprockets',    '~> 4.0.0'
-gem 'middleman-livereload'
-gem 'middleman-minify-html'
 gem 'middleman-autoprefixer'
-gem 'middleman-robots'
+gem 'middleman-livereload'
 gem 'middleman-inline_svg'
+gem 'middleman-minify-html'
+gem 'middleman-robots'
 
-# Asset Pipeline Gems
-gem 'sprockets', '~> 3.7.2'
-gem 'sass',      '~> 3.7.4'
-
-# Asset Pipeline Gems
-gem 'builder'
+# Assets Pipeline Gems
+gem 'builder', '~> 3.0'
 gem 'bourbon'
 
 # Build Pipeline Gems
 gem 'htmlcompressor'
 gem 'yui-compressor'
 gem 'terser', '~> 1.1'
+
+# Fix Middleman Issu
+gem 'haml', '>= 4.0.5', '< 6.0'
 
 # Windows Support
 gem 'wdm' if Gem.win_platform?
