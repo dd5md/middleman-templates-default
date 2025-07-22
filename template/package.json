@@ -1,0 +1,17 @@
+{
+  "name": "dd5md.de",
+  "version": "1.0.0",
+  "description": "Test-Build swr-meter.de with Material Components Web",
+  "engines": {
+    "node": ">= 22.14.0"
+  },
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DD5MD <md@dd5md.de>",
+  "license": "ISC",
+  "dependencies": {
+    "material": "npm:material-components-web@^4.0.0"
+  }
+}
