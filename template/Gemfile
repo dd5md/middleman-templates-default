@@ -1,7 +1,26 @@
-source 'https://rubygems.org'
+source 'https://www.rubygems.org'
+ruby file: '.ruby-version'
 
-gem 'middleman', '~> 4.5'
-gem 'middleman-autoprefixer', '~> 3.0'
-gem 'terser', '~> 1.1'
-gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby, :x64_mingw]
-gem 'wdm', '~> 0.1', platforms: [:mswin, :mingw, :x64_mingw]
+# Bourbon
+gem 'bourbon'
+gem 'builder'
+
+# Core
+gem 'middleman'
+gem 'middleman-livereload'
+gem 'middleman-autoprefixer'
+gem 'middleman-inline_svg'
+gem 'middleman-minify-html'
+gem 'middleman-pagegroups'
+gem 'middleman-robots'
+gem 'middleman-search_engine_sitemap'
+gem 'middleman-sitemap-ping'
+
+# Build Pipeline Gems
+gem 'htmlcompressor'
+gem 'yui-compressor'
+gem 'nokogiri'
+gem 'terser'
+
+# Windows Support
+gem 'wdm' if Gem.win_platform?
