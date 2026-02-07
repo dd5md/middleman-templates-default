@@ -2,15 +2,12 @@
 #  Configuration
 #  ~> https://dd5md.de
 ###-----------------------------------
-require 'htmlcompressor'
-require 'yui/compressor'
-require 'terser'
 
 # Import Helpers
-# Dir['helpers/*.rb'].each(&method(:load))
+Dir['helpers/*.rb'].each(&method(:load))
 
 # Import Lib
-# Dir['lib/*.rb'].each { |file| require file }
+Dir['lib/*.rb'].each { |file| require file }
 
 # Load Sass
 config[:sass_assets_paths] << File.join(root, 'node_modules')
@@ -19,22 +16,15 @@ config[:sass_assets_paths] << File.join(root, 'node_modules')
 #  Activate & Config Extensions
 ###-----------------------------------
 
-# Autoprefixer
-activate :autoprefixer do |config|
-  config.browsers = ['last 2 version']
-  config.cascade  = false
-  config.inline   = true
-end
-
 # Inline SVG
 activate :inline_svg
 
 # Pagegroups
-# activate :MiddlemanPageGroups do |options|
-#   options[:strip_file_prefixes]   = true
-#   options[:extend_page_class]     = true
-#   options[:nav_breadcrumbs_class] = 'breadcrumbs'
-# end
+activate :MiddlemanPageGroups do |options|
+  options[:strip_file_prefixes]   = true
+  options[:extend_page_class]     = true
+  options[:nav_breadcrumbs_class] = 'breadcrumbs'
+end
 
 ###-----------------------------------
 #  Layout-Specific Configuration
@@ -64,16 +54,37 @@ end
 page '404.html', layout: false, directory_index: false
 
 ###-----------------------------------
+#  External-Pipline Configuration
+###-----------------------------------
+
+assets_dir = File.expand_path('.tmp/dist', __dir__)
+
+activate :external_pipeline,
+  name: :gulp,
+  command: build? ? './node_modules/gulp/bin/gulp.js buildProd' : './node_modules/gulp/bin/gulp.js default',
+  source: assets_dir,
+  latency: 1
+
+###-----------------------------------
 #  Development-Specific Configuration
 ###-----------------------------------
 
 configure :development do
   # Debug Assets
   config[:debug_assets] = true
-  # Config Port
-  config[:port] = '7001'
-  # Activate Livereload
-  activate :livereload, no_swf: true, apply_css_live: true, livereload_css_target: 'nil'
+end
+
+###-----------------------------------
+#  Sitemap-Specific Configuration
+###-----------------------------------
+
+# Sitemap Ping
+activate :sitemap_ping do |config|
+  config.host         = 'https://dd5md.de'
+  config.sitemap_file = '/sitemap.xml'
+  config.ping_google  = true
+  config.ping_bing    = false
+  config.after_build  = false
 end
 
 ###-----------------------------------
@@ -81,12 +92,25 @@ end
 ###-----------------------------------
 
 configure :production do
-  # Asset Hash
-  activate :asset_hash
-  # Minify CSS on Build
-  activate :minify_css, inline: true, compressor: YUI::CssCompressor.new
-  # Minify HTML on Build
-  activate :minify_html
-  # Minify JS on Build
-  activate :minify_javascript, inline: true, compressor: Terser.new
+  # Host
+  config[:host] = 'https://dd5md.de'
+  # URL_Root
+  config[:url_root] = 'https://dd5md.de'
+  # Ignore
+  ignore 'statics/stylesheets/*'
+  ignore 'statics/javascripts/*'
+  ignore 'statics/images/*'
+  ignore 'statics/*'
+  ignore 'source/*'
+  ignore '.DS_Store'
+  # ASSET HASH
+  activate :asset_hash, ignore: 'assets/images/**/*', exts: config[:asset_extensions] = %w(.woff) + %w(.woff2) + %w(.css) + %w(.js) + %w(.webp) + %w(.svg)
+  # Sitemap
+  activate :search_engine_sitemap, default_priority: 0.5, default_change_frequency: 'weekly'
+  # Robots
+  activate :robots,
+            rules: [{ user_agent: '*', allow: %w[/], disallow: ['/404'] }],
+            sitemap: config[:host] + '/sitemap.xml'
+  # Clean Build
+  activate :clean_build
 end
