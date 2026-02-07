@@ -1,26 +1,15 @@
 source 'https://www.rubygems.org'
-ruby file: '.ruby-version'
 
-# Bourbon
-gem 'bourbon'
+# Builder
 gem 'builder'
 
-# Core
-gem 'middleman'
+# Middleman Core
+gem 'middleman', '~> 4.6'
 gem 'middleman-livereload'
 gem 'middleman-autoprefixer'
-gem 'middleman-inline_svg'
-gem 'middleman-minify-html'
-gem 'middleman-pagegroups'
-gem 'middleman-robots'
-gem 'middleman-search_engine_sitemap'
-gem 'middleman-sitemap-ping'
 
 # Build Pipeline Gems
-gem 'htmlcompressor'
-gem 'yui-compressor'
-gem 'nokogiri'
-gem 'terser'
+gem 'terser', '~> 1.1'
 
 # Windows Support
 gem 'wdm' if Gem.win_platform?
