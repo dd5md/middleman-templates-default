@@ -1,16 +1,36 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html class='' lang='de-DE'>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Use the title from a page's frontmatter if it has one -->
-    <title><%= current_page.data.title || "Middleman" %></title>
-    <%= stylesheet_link_tag "site" %>
-    <%= javascript_include_tag "site" %>
+    <meta charset='UTF-8'>
+    <!--Title-->
+    <title><%= meta_tag_title %></title>
+    <%= tag('meta', content: 'ie=edge,chrome=1', 'http-equiv' => 'x-ua-compatible') %>
+    <%= tag('meta', name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no') %>
+    <!--Meta-Tags-->
+    <%= component :meta %>
+    <!--Modified-->
+    <%= tag('meta', content: '2026-10-06T02:12:31+00:00', property: 'article:modified_time') %>
+    <%= tag('meta', content: '2026-10-06T02:12:31+00:00', property: 'article:published_time') %>
+    <!--Preload-->
+    <%= tag('link', rel: 'preload', href: asset_path(:css, 'site'), as: 'style') %>
+    <!--Styles-->
+    <%= stylesheet_link_tag 'site', media: 'all' %>
+    <%= yield_content :head %>
   </head>
-  <body>
-    <%= yield %>
+
+  <body id='page_top' class='mdc-typography'>
+    <%= component :drawer %>
+    <%= component :appbar %>
+    <%= component :hero %>
+    <main class='mdc-top-app-bar--fixed-adjust' role='main'>
+      <%= yield %>
+    </main>
+    <%#= component :slider %>
+    <%= component :map if current_page.data.page_class == 'map' %>
+    <%= component :footer %>
+    <!--Scripts-->
+    <%= javascript_include_tag 'site.min', async: true %>
+    <!--Init-->
+    <%= component :init %>
   </body>
 </html>
