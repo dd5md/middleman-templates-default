@@ -1,60 +1,63 @@
 ###-----------------------------------
-#  Configuration
+#  CONFIGURATION
 #  ~> https://dd5md.de
 ###-----------------------------------
 
-# Import Helpers
+# IMPORT HELPERS
 Dir['helpers/*.rb'].each(&method(:load))
 
-# Import Lib
+# IMPORT LIBs
 Dir['lib/*.rb'].each { |file| require file }
 
-# Load Sass
-config[:sass_assets_paths] << File.join(root, 'node_modules')
-
 ###-----------------------------------
-#  Activate & Config Extensions
+#  ACTIVATE & CONFIG EXTENSIONS
 ###-----------------------------------
 
-# Inline SVG
+# I18N
+# activate :i18n, mount_at_root: :de
+
+# INLINE SVG
 activate :inline_svg
 
-# Pagegroups
-activate :MiddlemanPageGroups do |options|
-  options[:strip_file_prefixes]   = true
-  options[:extend_page_class]     = true
-  options[:nav_breadcrumbs_class] = 'breadcrumbs'
+# IMAGE SIZE HELPER
+activate :automatic_image_sizes
+
+# PAGEGROUPS
+activate :MiddlemanPageGroups do |config|
+  config.strip_file_prefixes   = true
+  config.extend_page_class     = true
+  config.nav_breadcrumbs_class = 'breadcrumbs'
 end
 
 ###-----------------------------------
-#  Layout-Specific Configuration
+#  LAYOUT-SPECIFIC CONFIGURATION
 ###-----------------------------------
 
-# Relative Links
-config[:relative_links] = false
+# RELATIVE LINKS
+config[:relative_links] = true
 
-# Assets Pipeline Set
-config[:css_dir]    = 'assets/stylesheets'
-config[:js_dir]     = 'assets/javascripts'
-config[:images_dir] = 'assets/images'
-config[:fonts_dir]  = 'assets/fonts'
+# ASSETS PIPLINE SET
+config[:css_dir]     = 'assets/stylesheets'
+config[:js_dir]      = 'assets/javascripts'
+config[:images_dir]  = 'assets/images'
+config[:fonts_dir]   = 'assets/fonts'
 
-# Relative Assets
+# RELATIVE ASSETS
 activate :relative_assets
 
-# Pretty URLs
+# PRETTY URLs
 activate :directory_indexes
 
-# No Layout
+# NO LAYOUT
 [:xml, :json, :txt, :htaccess].each do |ext|
   page '/*.' + ext.to_s, layout: false
 end
 
-# No Layout
+# NO LAYOUT
 page '404.html', layout: false, directory_index: false
 
 ###-----------------------------------
-#  External-Pipline Configuration
+#  EXTERNAL PIPELINE GULP.JS
 ###-----------------------------------
 
 assets_dir = File.expand_path('.tmp/dist', __dir__)
@@ -66,19 +69,19 @@ activate :external_pipeline,
   latency: 1
 
 ###-----------------------------------
-#  Development-Specific Configuration
+#  SERVER-SPECIFIC CONFIGURATION
 ###-----------------------------------
 
-configure :development do
-  # Debug Assets
+configure :server do
+  # DEBUG ASSETS
   config[:debug_assets] = true
 end
 
 ###-----------------------------------
-#  Sitemap-Specific Configuration
+#  SITEMAP-SPECIFIC CONFIGURATION
 ###-----------------------------------
 
-# Sitemap Ping
+# SITEMAP PING
 activate :sitemap_ping do |config|
   config.host         = 'https://dd5md.de'
   config.sitemap_file = '/sitemap.xml'
@@ -88,15 +91,15 @@ activate :sitemap_ping do |config|
 end
 
 ###-----------------------------------
-#  Production-Specific Configuration
+#  PRODUCTION-SPECIFIC CONFIGURATION
 ###-----------------------------------
 
 configure :production do
-  # Host
+  # HOST
   config[:host] = 'https://dd5md.de'
-  # URL_Root
+  # URL_ROOT
   config[:url_root] = 'https://dd5md.de'
-  # Ignore
+  # IGNORE
   ignore 'statics/stylesheets/*'
   ignore 'statics/javascripts/*'
   ignore 'statics/images/*'
@@ -105,12 +108,12 @@ configure :production do
   ignore '.DS_Store'
   # ASSET HASH
   activate :asset_hash, ignore: 'assets/images/**/*', exts: config[:asset_extensions] = %w(.woff) + %w(.woff2) + %w(.css) + %w(.js) + %w(.webp) + %w(.svg)
-  # Sitemap
+  # SITEMAP
   activate :search_engine_sitemap, default_priority: 0.5, default_change_frequency: 'weekly'
-  # Robots
+  # ROBOTS
   activate :robots,
             rules: [{ user_agent: '*', allow: %w[/], disallow: ['/404'] }],
             sitemap: config[:host] + '/sitemap.xml'
-  # Clean Build
+  # CLEANBUILD
   activate :clean_build
 end
