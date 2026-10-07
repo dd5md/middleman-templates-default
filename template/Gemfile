@@ -1,15 +1,28 @@
-source 'https://www.rubygems.org'
+source 'https://rubygems.org'
 
-# Builder
-gem 'builder'
+gem 'activesupport', '~> 7.2'
+gem 'builder',       '~> 3.3'
+gem 'tilt',          '2.9.0'
 
-# Middleman Core
-gem 'middleman', '~> 4.6'
+# Middleman Gems
+gem 'middleman', '4.6.3'
 gem 'middleman-livereload'
-gem 'middleman-autoprefixer'
+gem 'middleman-pagegroups'
+gem 'middleman-inline_svg'
+gem 'middleman-search_engine_sitemap'
+gem 'middleman-sitemap-ping'
+gem 'middleman-robots'
 
 # Build Pipeline Gems
-gem 'terser', '~> 1.1'
+gem 'htmlcompressor'
+gem 'yui-compressor'
+gem 'terser'
+
+# Fix Middleman Issu
+gem 'haml', '>= 4.0.5', '< 6.0'
+
+# Hide Warnings
+gem 'ostruct', '~> 0.6.3'
 
 # Windows Support
 gem 'wdm' if Gem.win_platform?
