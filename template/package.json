@@ -1,25 +1,24 @@
 {
   "name": "dd5md.de",
   "version": "1.0.0",
-  "description": "Test-Build swr-meter.de with Material Components Web",
-  "engines": {
-    "node": ">= 22.14.0"
-  },
+  "description": "Website https://dd5md.de",
   "main": "gulpfile.js",
+  "engines": {
+    "node": ">= 24.15.0"
+  },
   "scripts": {
+    "purgecss": "purgecss --css build/assets/stylesheets/home-*.css build/assets/stylesheets/site-*.css --content build/*.html build/**/*.html build/assets/javascripts/site-*.js --output build/",
     "optimize": "gulp optimize",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "DD5MD <md@dd5md.de>",
+  "author": "Mathias Davidheimann [md@dd5md.de]",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.2",
-    "baseline-browser-mapping": "^2.8.32",
     "bourbon": "^7.2.0",
     "browser-sync": "^2.27.7",
     "browserslist": "^4.20.0",
     "clean-css": "^5.3.1",
-    "critical": "^4.0.1",
     "cssnano": "^5.1.3",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
@@ -31,7 +30,6 @@
     "gulp-if": "^3.0.0",
     "gulp-inline-images": "^1.4.0",
     "gulp-inline-source": "^4.0.0",
-    "gulp-notify": "^5.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^9.0.1",
     "gulp-purgecss": "^5.0.0",
@@ -42,12 +40,14 @@
     "gulp-strip-css-comments": "^2.0.0",
     "gulp-terser": "^2.1.0",
     "gulp-touch-fd": "github:funkedigital/gulp-touch-fd",
-    "gulp-webp": "^4.0.1",
-    "node-sass": "^7.0.1",
     "postcss": "^8.4.8",
+    "puppeteer": "^25.11.0",
+    "sass": "^1.104.1",
+    "sharp": "^0.35.4",
     "terser": "^5.12.1"
   },
   "dependencies": {
+    "flexslider": "^2.7.2",
     "glightbox": "^3.2.0",
     "material": "npm:material-components-web@^4.0.0",
     "slick": "npm:slick-carousel@^1.6.0"
